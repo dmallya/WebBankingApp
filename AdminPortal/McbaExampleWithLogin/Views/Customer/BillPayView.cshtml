@@ -1,0 +1,98 @@
+﻿@model Account
+
+@{
+    ViewData["Title"] = "BillPay";
+}
+@{DateTime dt1 = new DateTime();}
+
+<h1>Billpays for @Model.AccountNumber</h1>
+<p></p>
+<p>
+    <a class="btn btn-dark" asp-action="CreateBillPay">Create New BillPay</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Amount
+            </th>
+            <th>
+                Schedule Time
+            </th>
+            <th>
+                Period
+            </th>
+            <th>
+                Account
+            </th>
+            <th>
+                Payee Name
+            </th>
+            <th>
+                PayeeID
+            </th>
+            <th>
+                Last Payment
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@{int index = 2;}
+        @{
+            List<int> indexforFailed = new List<int>();
+            List<int> indexforPaid = new List<int>();
+        }
+        @foreach (var item in Model.BillPays) {
+        
+       @* @if(item.Period == PeriodType.Failed)
+        {
+             indexforFailed.Add(index);
+             <style>tr:nth-child(@index){background-color: #DEA6B0; border-radius: 10px}</style>
+        }
+        @if(item.Period == PeriodType.Paid)
+        {
+            indexforPaid.Add(index);
+            <style>tr:nth-child(@index){background-color: #B9DEA6; border-radius: 10px}</style>
+        }*@
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleTimeUtc)
+            </td>
+            <td>
+                 @if(item.Period != PeriodType.Failed){ @Html.DisplayFor(modelItem => item.Period)} else {<p>Payment Failed</p>}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.AccountNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payee.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payee.PayeeID)
+            </td>
+            <td>
+                @if(item.LastPaid != dt1){ @Html.DisplayFor(modelItem => item.LastPaid)} else {<p></p>}
+            </td>
+            <td>
+                    @if(item.LastPaid != dt1){ <p>Paid!</p>} else {<p>Pending</p>}
+            </td>
+            <td>
+                <a asp-controller = "Customer" asp-action="EditBillPay" asp-route-id="@item.BillPayId">Edit</a>
+                 <a asp-controller = "Customer" asp-action="DeleteBillPay" asp-route-id="@item.BillPayId">Delete</a>
+            </td>
+        </tr>
+        index = index + 1;
+        }
+        
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to Accounts</a>
+</div>

@@ -1,0 +1,53 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "Transfer";
+}
+<h3>Transfer</h3>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Transfer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                <label for="AccountFrom" class="control-label" >Account Number to transfer from:</label>
+                
+                <select name="AccountFrom" id="AccountFrom" class="form-control" data-val="true" data-val-number="The field Amount must be a number."
+                    data-val-required="The Acount field is required.">
+
+                @foreach (var account in Model.Accounts)
+                {       
+                 <option value="@account.AccountNumber">@account.AccountNumber</option>
+                }
+                </select>
+                @Html.ValidationMessage("AccountFrom", new { @class = "text-danger" })
+                <p></p>
+                <label for="Amount" class="control-label">Amount</label>
+                <input id="Amount" name="Amount" class="form-control" value="@ViewBag.Amount?.ToString("0.00")"
+                    data-val="true" data-val-number="The field Amount must be a number."
+                    data-val-required="The Amount field is required." />
+                @Html.ValidationMessage("Amount", new { @class = "text-danger" })
+                <p></p>
+                <label for="Account" class="control-label">Account Number to transfer to:</label>
+                 <input id="Account" name="Account" class="form-control"
+                    data-val="true" data-val-number="The field Account Number must be a number."
+                    data-val-required="The Account field is required." />
+                @Html.ValidationMessage("Account", new { @class = "text-danger" })
+                <p></p>
+                <label for="Comment" class="control-label">Comment</label>
+                 <input id="Comment" name="Comment" class="form-control" value="" />
+                @Html.ValidationMessage("Comment", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Transfer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Accounts</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

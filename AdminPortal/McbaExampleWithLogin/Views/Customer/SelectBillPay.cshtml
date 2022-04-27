@@ -1,0 +1,43 @@
+﻿@model BillPayView
+@{
+    ViewData["Title"] = "MyStatement";
+}
+<p></p>
+@if(Model.BillPays.Count == 0)
+{
+    <h4>No BillPays Present in the database</h4>
+}
+else
+{
+    <div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateBillPay">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <label for="id" class="control-label" >Select BillPay</label>
+                
+                <select name= "id" id="id" class="form-control">
+
+                @foreach (var billPay in Model.BillPays)
+                {       
+                <option value="@billPay.BillPayId">BillPay Account: @billPay.AccountNumber -- BillPayID: @billPay.AccountNumber -- BillPayAmount: @billPay.Amount</option>
+                }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Toggle Block/Unblock BillPay" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<div>
+    <a asp-action="Index">Back to Accounts</a>
+</div>

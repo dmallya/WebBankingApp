@@ -1,0 +1,58 @@
+﻿<style>
+    .mininav {
+         margin: auto;
+         width: 100%;
+         padding: 10px;
+         border-bottom: 1px solid grey;
+         padding-bottom: 15px;
+    }
+    .mininav ul {
+        list-style-type: none;
+        margin: auto;
+        padding: 0;
+        text-align: center;
+    }
+    .mininav li {
+         display: inline;
+         width: 50px;
+         margin: auto;
+         padding-left: 15px;
+         padding-right: 15px;
+         color: #343a40!important;
+         text-align: center;
+    }
+    .mininav li a{
+        text-decoration: none;
+        color: #343a40!important;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+</style>
+
+<div class="mininav">
+  <ul>
+      <li>
+           <a asp-controller="Customer" asp-action="Index">My Accounts</a>
+      </li>
+      <li>
+        <a asp-controller="Customer" asp-action="Deposit">Deposit</a>
+      </li>
+    <li>
+        <a asp-controller="Customer" asp-action="Withdraw">Withdraw</a>
+    </li>
+    <li>
+        <a asp-controller="Customer" asp-action="Transfer">Transfer</a>
+   </li>
+   <li>
+        <a asp-controller="Customer" asp-action="BillPay">BillPay</a>
+   </li>
+    <li>
+        <a asp-controller="Customer" asp-action="MyStatement">MyStatement</a>
+   </li>
+   <li>
+        <a asp-controller="Customer" asp-action="CustomerDetails">MyProfile</a>
+   </li>
+   </ul>
+ </div>

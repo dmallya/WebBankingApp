@@ -1,0 +1,74 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "CreateBillPay";
+}
+
+<h1>CreateBillPay</h1>
+
+<h4>BillPay</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateBillPayView">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <label asp-for="@Model.BillPay.AccountNumber" class="control-label" >Account Number</label>
+                
+                <select asp-for="@Model.BillPay.AccountNumber" class="form-control">
+
+                @foreach (var account in Model.Customer.Accounts)
+                {       
+                <option value="@account.AccountNumber">@account.AccountNumber</option>
+                }
+                </select>
+       
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.BillPay.PayeeID" class="control-label" >Payee</label>
+                <select asp-for="@Model.BillPay.PayeeID" class="form-control">
+                @foreach (var payee in Model.Payees)
+                {       
+                <option value="@payee.PayeeID">@payee.Name: @payee.PayeeID</option>
+                }
+                </select>
+            </div>
+            <a asp-action="Payee">Add Payee</a>
+            <div class="form-group">
+                <label asp-for="@Model.BillPay.Amount" class="control-label"></label>
+                <input asp-for="@Model.BillPay.Amount" class="form-control data-val="true" data-val="true" data-val-number="The field Amount must be a number."
+                    data-val-required="The Amount field is required." type="number" />
+                <span asp-validation-for="@Model.BillPay.Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.BillPay.ScheduleTimeUtc" class="control-label"></label>
+                <input asp-for="@Model.BillPay.ScheduleTimeUtc" class="form-control" />
+                <span asp-validation-for="@Model.BillPay.ScheduleTimeUtc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+
+
+                <label asp-for="@Model.BillPay.Period" class="control-label"></label>
+                
+                <select asp-for="@Model.BillPay.Period" class="form-control">
+                
+                <option value="@PeriodType.Monthly">Monthly</option>
+                <option value="@PeriodType.OneOff">One Off</option>
+                </select>
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="BillPay">Back to BillPay</a>
+</div>
+
+
+

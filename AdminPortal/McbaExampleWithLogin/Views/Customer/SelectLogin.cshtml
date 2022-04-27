@@ -1,0 +1,35 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "MyStatement";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LockAccount">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <label for="id" class="control-label" >Select Login to lock/unlock</label>
+                
+                <select name= "id" id="id" class="form-control">
+
+                @foreach (var login in Model.Logins)
+                {       
+                <option value="@login.LoginID">Login account: @login.LoginID</option>
+                }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Toggle Lock/Unlock Account" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<div>
+    <a asp-action="Index">Back to Accounts</a>
+</div>

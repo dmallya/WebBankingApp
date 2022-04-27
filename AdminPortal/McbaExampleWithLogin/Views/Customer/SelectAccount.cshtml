@@ -1,0 +1,36 @@
+﻿@model AccountsViewModel
+@{
+    ViewData["Title"] = "MyStatement";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AccountTransactions">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <label for="Account" class="control-label" >Select Account</label>
+                
+                <select name="Account" id="Account" class="form-control" data-val="true" data-val-number="The field Amount must be a number."
+                    data-val-required="The Amount field is required.">
+
+                @foreach (var accounts in Model.Accounts)
+                {       
+                <option value="@accounts.AccountNumber">Account Number @accounts.AccountNumber</option>
+                }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="View Account Transactions" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>

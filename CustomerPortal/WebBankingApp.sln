@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBankingApp", "McbaExampleWithLogin\WebBankingApp.csproj", "{889F2092-4698-44D8-B3A5-4E2345FBF0DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBankingAppTests", "WebBankingAppTests\WebBankingAppTests.csproj", "{25D6484B-A72F-4AB6-B0D2-11BEA9A8C75B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{889F2092-4698-44D8-B3A5-4E2345FBF0DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{889F2092-4698-44D8-B3A5-4E2345FBF0DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{889F2092-4698-44D8-B3A5-4E2345FBF0DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{889F2092-4698-44D8-B3A5-4E2345FBF0DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25D6484B-A72F-4AB6-B0D2-11BEA9A8C75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D6484B-A72F-4AB6-B0D2-11BEA9A8C75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D6484B-A72F-4AB6-B0D2-11BEA9A8C75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D6484B-A72F-4AB6-B0D2-11BEA9A8C75B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8BE7E19-5A45-4331-BFDB-946F8C33C14A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,49 @@
+﻿<style>
+    .mininav {
+         margin: auto;
+         width: 100%;
+         padding: 10px;
+         border-bottom: 1px solid grey;
+         padding-bottom: 15px;
+    }
+    .mininav ul {
+        list-style-type: none;
+        margin: auto;
+        padding: 0;
+        text-align: center;
+    }
+    .mininav li {
+         display: inline;
+         width: 50px;
+         margin: auto;
+         padding-left: 15px;
+         padding-right: 15px;
+         color: #343a40!important;
+         text-align: center;
+    }
+    .mininav li a{
+        text-decoration: none;
+        color: #343a40!important;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+</style>
+
+<div class="mininav">
+  <ul>
+      <li>
+           <a asp-controller="Customer" asp-action="SelectAccount">View Transaction History</a>
+      </li>
+      <li>
+        <a asp-controller="Customer" asp-action="SelectCustomer">Modify Customer Details</a>
+      </li>
+    <li>
+        <a asp-controller="Customer" asp-action="SelectLogin">Lock and Unlock Account</a>
+    </li>
+    <li>
+        <a asp-controller="Customer" asp-action="SelectBillPay">Block and Unblock Billpay</a>
+   </li>
+   </ul>
+ </div>

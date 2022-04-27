@@ -1,0 +1,43 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "BillPay";
+}
+
+<h3>Billpays Account Selection</h3>
+<p>
+    <a class="btn btn-dark" asp-action="CreateBillPay">Create New BillPay</a>
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="BillPayView">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <label for="accountnumber" class="control-label" >Select Account to view upcoming BillPay</label>
+                
+                <select name="accountnumber" id="accountnumber" class="form-control" data-val="true" data-val-number="The field accountnumber must be a number."
+                    data-val-required="The accountnumber field is required.">
+
+                @foreach (var account in Model.Accounts)
+                {       
+                <option value="@account.AccountNumber">Account @account.AccountNumber</option>
+                }
+                </select>
+                @Html.ValidationMessage("accountnumber", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="View Statement" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<div>
+    <a asp-action="Index">Back to Accounts</a>
+</div>

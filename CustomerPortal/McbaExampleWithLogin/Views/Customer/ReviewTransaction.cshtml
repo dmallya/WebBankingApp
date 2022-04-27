@@ -1,0 +1,53 @@
+﻿@model WebBankingApp.Models.Transaction
+
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TransactionType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TransactionType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AccountNumber)
+        </dd>
+        @if (Model.DestinationAccountNumber != null)
+        {
+            <dt class = "col-sm-2">
+                Destination Account
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.DestinationAccountNumber)
+            </dd> 
+        }
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TransactionTimeUtc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TransactionTimeUtc)
+        </dd>
+    </dl>
+</div>
+
+<a class="btn btn-danger" asp-action="ConfirmTransaction" >Confirm @Model.TransactionType</a>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

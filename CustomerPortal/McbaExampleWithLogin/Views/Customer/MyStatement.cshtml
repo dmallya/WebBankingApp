@@ -1,0 +1,38 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "MyStatement";
+}
+<h3>MyStatement Account Selection</h3>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="MyStatementView">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <label for="id" class="control-label" >Select Account to view statement</label>
+                
+                <select name="id" id="id" class="form-control" data-val="true" data-val-number="The field Account must be a number."
+                    data-val-required="The Account field is required.">
+
+                @foreach (var account in Model.Accounts)
+                {       
+                <option value="@account.AccountNumber">Account @account.AccountNumber</option>
+                }
+                </select>
+                @Html.ValidationMessage("id", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="View Statement" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<div>
+    <a asp-action="Index">Back to Accounts</a>
+</div>

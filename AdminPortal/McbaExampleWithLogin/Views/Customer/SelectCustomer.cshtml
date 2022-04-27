@@ -1,0 +1,36 @@
+﻿@model CustomerView
+@{
+    ViewData["Title"] = "Select Customer";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CustomerDetails">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <label for="CustomerId" class="control-label" >Select Customer to modify details</label>
+                
+                <select name="CustomerId" id="CustomerId" class="form-control" data-val="true" data-val-number="The field Customer must be a number."
+                    data-val-required="The Customer field is required.">
+
+                @foreach (var customer in Model.Customers)
+                {       
+                <option value="@customer.CustomerID">Account Number @customer.Name</option>
+                }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Modify Customer Details" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>

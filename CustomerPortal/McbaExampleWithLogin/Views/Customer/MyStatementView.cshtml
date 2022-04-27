@@ -1,0 +1,77 @@
+﻿@model StatementViewModel
+@{
+    ViewData["Title"] = "MyStatement";
+}
+
+<style>
+    table, th, td {
+  border: 1px solid black;
+}
+    table {width:100%;}
+
+    .balance {
+        border: 1px solid black;
+        font-size: 20px;
+    }
+    .balance p {
+        padding-left:10px;
+        padding-top:4px;
+        padding-bottom: 0;
+    }
+
+</style>
+<h3>Account @Model.Account.AccountNumber</h3>
+<div class = "balance">
+
+<p><b>Current Balance: $@Model.Account.Balance</b></p>
+</div>
+
+@{
+    List<Transaction> translist = Model.Account.Transactions;
+    translist.Reverse();
+}
+
+@{
+        var indexStart = Model.StartIndex + 4;
+        var indexStartPrev = Model.StartIndex - 4;
+    }
+    <hr>
+    @if(Model.StartIndex >=4 )
+    {
+        <a class="btn btn-outline-danger" asp-action="MyStatementView" asp-route-id="@Model.Account.AccountNumber" asp-route-startIndex="@indexStartPrev">View Previous Transactions</a>
+    }
+    @if(translist.Count - Model.StartIndex > 4)
+    {
+        <a class="btn btn-outline-success" asp-action="MyStatementView" asp-route-id="@Model.Account.AccountNumber" asp-route-startIndex="@indexStart">View Next Transactions</a>
+    }
+    <hr>
+<table>
+    <tr>
+        <th>TransactionID</th>
+        <th>TransactionType</th>
+        <th>AccountNumber</th>
+        <th>DestinationAccountNumber</th>
+        <th>Amount</th>
+        <th>Comment</th>
+        <th>Time</th>
+   </tr>
+    @for(int i = Model.StartIndex; i < translist.Count && i < (Model.StartIndex + 4); ++i)
+    {
+       <tr>
+        <td>@translist[i].TransactionID</td>
+        <td>@translist[i].TransactionType</td>
+        <td>@translist[i].AccountNumber</td>
+        <td>@translist[i].DestinationAccountNumber</td>
+        <td>@translist[i].Amount</td>
+        <td>@translist[i].Comment</td>
+        <td>@translist[i].TransactionTimeUtc.ToLocalTime()</td>
+        </tr> 
+    }
+</table>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<div>
+    <a asp-action="Index">Back to Accounts</a>
+</div>
